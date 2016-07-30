@@ -1,0 +1,50 @@
+<div class="step-container" data-step="forms" id="step-forms" style="display: block;">
+    <div class="pane your-info">
+
+        <div class="form-group required-field">
+            <label for="first-name" class="control-label hide-if-no-placeholder">Name <span class="error">*</span> <span class="show-on-error">(required)</span></label>
+            <div>
+                <span class="hide-if-placeholder">First Name <span class="error">*</span></span>
+                <input type="text" class="form-control" name="firstName" id="first-name" value="" placeholder="First">
+                <span class="hide-if-placeholder">Last Name <span class="error">*</span></span>
+                <input type="text" class="form-control" name="lastName" id="last-name" value="" placeholder="Last">
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="phone" class="control-label">Phone</label>
+            <input type="text" class="form-control" name="phone" id="phone" value="">
+            <input type="hidden" name="smsOptout" id="smsOptout" value="0">
+        </div>
+        <div class="form-group required-field">
+            <label for="email" class="control-label">E-mail <span class="error">*</span> <span class="show-on-error">(required)</span></label>
+            <input type="email" class="form-control" name="email" id="email" value="" autocorrect="off">
+            <div class="help-block" id="email-error-help" style="display:none">Your e-mail address is invalid<span id="email-error-domain">. Did you type the domain correctly?</span></div>
+        </div>
+        <div class="form-group required-field">
+            <label for="time" class="control-label">Time <span class="error">*</span> <span class="show-on-error">(required)</span></label>
+            <input type="text" class="form-control" name="time" id="time" value="2016-02-03T14:00:00-0800" autocorrect="off">
+            <div class="help-block" id="time-error-help" style="display:none">The time is invalid<span id="time-error-domain"></span></div>
+        </div>
+        <div class="form-group " data-field-id="1917296">
+            <label for="field:1917296" class="control-label babel-ignore">Brand </label>
+            <input type="text" class="text form-control inline-field" name="field:1917296" value="">
+        </div>
+        <div class="form-group " data-field-id="1917299">
+            <label for="field:1917299" class="control-label babel-ignore">Model </label>
+            <input type="text" class="text form-control inline-field" name="field:1917299" value="">
+        </div>
+        <div class="form-group " data-field-id="1917301">
+            <label for="field:1917301" class="control-label babel-ignore">Repair Type </label>
+            <input type="text" class="text form-control inline-field" name="field:1917301" value="">
+        </div>
+
+        <div class="forms-action-container">
+            <p style="display: none" class="text-danger" id="error-message-submit-failed">An error occurred while trying to finalize appointment, please check that you're still online and try again.</p>
+
+            <input type="hidden" name="appointmentTypeID" value="1671580">
+            <input type="hidden" name="calendarID" value="679696">
+            <input type="hidden" name="action" value="acuity_form">
+            <input type="submit" name="cf-submitted" class="btn btn-primary submit-forms-nopay" data-loading-text="Confirming Appointment..." value="Schedule">
+        </div>
+    </div>
+</div>
