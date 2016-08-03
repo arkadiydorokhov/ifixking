@@ -1,0 +1,149 @@
+<div class="content">
+
+    <div id="popup" style="display:none">
+        <button type="button" class="close close-popup pull-right"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <div class="pane" id="popup-content">
+            <!-- dynamic -->
+        </div>
+    </div>
+
+    <div id="page-loading">
+        <div class="large progress-spinner"></div>
+        <h1>Loading...</h1>
+    </div>
+
+    <form id="appointment-form" class="content-scheduling-steps" style="" novalidate>
+        <input type="hidden" name="owner" id="owner" value="12562561"/>
+        <input type="hidden" name="linkAppointmentType" value="null"/>
+        <input type="hidden" name="linkCalendar" value="null"/>
+
+        <div class="header">
+            <ol class="steps">
+                <li class="active step-pick-appointment"><a href="/schedule.php?owner=12562561&">Choose <span class="hidden-xs-nobabel">Appointment</span></a></li>
+                <li class="step-forms"><a href="#">Your Info</a></li>
+                <li class="step-confirmation"><a href="#">Confirmation</a></li>
+            </ol>
+            <div class="heading-actions">
+                <div class="login-container client-login">
+                    Returning? <a href="client-login.php?owner=12562561&PHPSESSID=g1bct0evuqcvdo3p6o59v6dn01&returnUrl=%2Fschedule.php%3Fowner%3D12562561%26" class="client-login-btn branded">Log in</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="pane error-flash alert alert-danger" style="display:none">
+
+        </div>
+
+        <div class="step-container" data-step="pick-appointment" id="step-pick-appointment">
+
+            <div class="pane business-description-container" style="display:none">
+                <div class="babel-ignore business-description" style="display:none">
+
+                </div>
+            </div>
+
+            <input type="text" id="jump-to-top" style="display:none;height:10px;width:10px;border:none;background:transparent;opacity:0;overflow:hidden;"/>
+
+            <div class="pane pick-appointment-pane">
+                <div class="select select-type ">
+                    <span class="caret"></span>
+                    <div class="select-label">I would like to schedule...</div>
+
+                    <div class="group-quantity-container">
+                        Quantity: <input type="text" id="group-quantity" class="form-control inline-field" value="1" size="1"/>
+                    </div>
+
+                    <input type="radio" name="appointmentType" data-is-group="0" id="appointmentType-1671580" value="1671580"/>
+                    <label class="select-item babel-ignore" for="appointmentType-1671580">
+                        <span class="appointment-type-name">Regular Visit</span>
+                        <div class="duration-container"><span class="duration">30 minutes</span></div>
+                    </label>
+
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <div class="select select-calendar" style="display:none">
+                    <span class="caret"></span>
+                    <div class="select-label">With...</div>
+                    <div id="select-calendar-options">
+                        <!-- dynamic -->
+                    </div>
+                </div>
+
+                <div class="choose-date-time" style="display:none">
+                    <input type="hidden" name="date[]" id="date" value=""/>
+                    <div class="choose-date">
+                        Loading...
+                    </div>
+                    <div class="choose-time-container" style="display:none">
+                        <h1></h1>
+                        <div class="choose-time"><!-- times go here --></div>
+                        <div class="choose-time-actions" style="display:none">
+                            <a href="#" class="btn btn-primary btn-block btn-next-step">Continue &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="selected-times-container">
+                    <a href="#" class="btn btn-primary btn-next-step-top btn-next-step" style="display:none">Continue &raquo;</a>
+                    <div id="selected-times">
+                        <!-- dynamic -->
+                    </div>
+                    <a href="#" class="btn btn-primary btn-next-step">Continue &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-container" data-step="forms" id="step-forms" style="display:none">
+            <div class="pane appt-summary-pane">
+                <div id="forms-appt-summary" class="babel-ignore"></div>
+                <a href="#" class="text-muted change-pick-appointment branded">&laquo; Change</a>
+            </div>
+
+            <div class="pane your-info">
+                <div class="form-group required-field is-focused">
+                    <label for="first-name" class="control-label hide-if-no-placeholder">Name <span class="error">*</span> <span class="show-on-error">(required)</span></label>
+                    <div>
+                        <span class="hide-if-placeholder">First Name <span class="error">*</span></span>
+                        <input type="text" class="form-control" name="firstName" id="first-name" value="" placeholder="First"/>
+                        <span class="hide-if-placeholder">Last Name <span class="error">*</span></span>
+                        <input type="text" class="form-control" name="lastName" id="last-name" value="" placeholder="Last"/>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="phone" class="control-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="phone" value=""/>
+                    <input type="hidden" name="smsOptout" id="smsOptout" value="0"/>
+                </div>
+                <div class="form-group required-field">
+                    <label for="email" class="control-label">E-mail <span class="error">*</span> <span class="show-on-error">(required)</span></label>
+                    <input type="email" class="form-control" name="email" id="email" value="" autocorrect="off"/>
+                    <div class="help-block" id="email-error-help" style="display:none">Your e-mail address is invalid<span id="email-error-domain">. Did you type the domain correctly?</span></div>
+                </div>
+            </div>
+
+            <div class="pane" id="custom-forms">
+
+            </div>
+        </div>
+
+        <div class="step-container" data-step="confirmation" id="step-confirmation" style="display:none">
+        </div>
+
+        <div class="clearfix"></div>
+    </form>
+
+    <script type="text/javascript">
+        var requireTZ = 0;
+        var autodetect_timezone = 1;
+        var isFree = 1;
+        var ownerTz = 'America/Los_Angeles';
+        var hasAddons = '0';
+
+        var typeToCalendars = new Array();
+        typeToCalendars[1671580] = [[679696, 'iFixKing']];
+    </script>
+
+</div>

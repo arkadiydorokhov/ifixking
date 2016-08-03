@@ -3,7 +3,7 @@
 define('AQUITY__PLUGIN_DIR', plugin_dir_path(__FILE__));
 require_once(AQUITY__PLUGIN_DIR . 'sdk.php');
 
-class wrapper
+class AcuityWrapper
 {
     protected $adapter = null;
 
@@ -56,5 +56,7 @@ class wrapper
         }
 
     }
+
+
 
 }

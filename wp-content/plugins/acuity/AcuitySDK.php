@@ -1,6 +1,11 @@
 <?php
 
-class AcuityScheduling
+/**
+ * Class AcuityScheduling
+ *
+ * https://github.com/AcuityScheduling/acuity-php/blob/master/src/AcuityScheduling.php
+ */
+class AcuitySDK
 {
     protected $base = 'https://acuityscheduling.com';
     protected $userId = null;

@@ -38,6 +38,7 @@ get_header(); ?>
 						'<span class="screen-reader-text">' . __( 'Previous post:', 'twentysixteen' ) . '</span> ' .
 						'<span class="post-title">%title</span>',
 				) );
+
 			}
 
 			// End of the loop.

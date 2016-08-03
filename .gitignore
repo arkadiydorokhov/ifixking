@@ -1,0 +1,7 @@
+/tests/_data/*
+.DS_Store
+*.env
+vendor
+.idea
+.phpstorm.meta.php
+.gitattributes

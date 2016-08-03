@@ -1,0 +1,104 @@
+<div class="pane schedule-confirmation-loaded">
+
+    <div class="row">
+        <div class="col-sm-8">
+            <i class="fa fa-check-circle appt-sign confirmed-sign"></i>
+
+            <div class="confirmation-details-container">
+
+                <div class="client-name babel-ignore">Alex Perekurenko</div>
+                <h2 class="babel-ignore appointment-type">Regular Visit</h2>
+                <div class="appointment-time">
+		<span class="babel-ignore">
+			<h2 class="text-muted">
+			Tuesday, August 9, 2016<br/>9:00am PDT
+			</h2>
+			<span class="babel-ignore calendar-name">iFixKing</span></div>
+
+                <div class="confirmation-actions margin-bottom">
+                    <a href="#" data-confirm-href="/schedule.php?action=appt&owner=12562561&id%5B%5D=8016d9f75132eccd0d32acb54d1d9f53&admin=&PHPSESSID=bphqpnl41b34mab0ivnpjekgb2&m=cancel" class="btn btn-default" id="appt-cancel">Cancel</a>
+                    <a href="#" class="btn btn-default" id="appt-reschedule">Reschedule</a>
+                    <a href="#" class="btn btn-default" id="client-edit-forms">Edit Forms</a>
+                </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-sm-4">
+            <div class="clearfix"></div>
+            <div class="client-register">
+                <div class="text-muted">Save your information</div>
+                <a class="client-register-btn btn btn-default" href="client-signup.php?appt=53700508&uniqueID=8016d9f75132eccd0d32acb54d1d9f53">Register for an Account</a>
+            </div>
+
+            <div class="add-to-calendar-container">
+                <div class="text-muted">Add to Calendar</div>
+                <a href="/schedule.php?owner=12562561&id[]=8016d9f75132eccd0d32acb54d1d9f53&action=appt&m=cal&PHPSESSID=bphqpnl41b34mab0ivnpjekgb2&.ics" class="btn btn-default">Add to iCal/Outlook</a>
+                <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Regular+Visit+%28iFixKing%29&dates=20160809T160000Z/20160809T163000Z&details=View%2FChange+Appointment%3A%0Ahttps%3A%2F%2Fapp.acuityscheduling.com%2Fschedule.php%3Fowner%3D12562561%26id%5B%5D%3D8016d9f75132eccd0d32acb54d1d9f53%26action%3Dappt&sf=true&output=xml"
+                   class="btn btn-default" target="_blank">Add to Google</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script id="reschedule-template" type="text/x-template">
+    <form action="schedule.php?owner=12562561&id[]=8016d9f75132eccd0d32acb54d1d9f53&action=appt&m=reschedule&apptId=53700508&admin=0&PHPSESSID=bphqpnl41b34mab0ivnpjekgb2" class="reschedule-form" method="POST">
+        <p>Rescheduling from <strong><span class="babel-ignore">August 9, 2016</span> at <span class="babel-ignore">9:00am PDT</span></strong> to...</p>
+        <div class="reschedule-choose-date-time margin-top">
+            <input type="hidden" name="date" id="reschedule-date" value=""/>
+            <div class="choose-date">
+                Loading....
+            </div>
+            <div class="reschedule-choose-time-container" style="display:none">
+                <div class="reschedule-choose-time"><!-- times go here --></div>
+                <div class="reschedule-choose-time-actions" style="display:none">
+                    <input type="submit" class="btn btn-primary btn-block reschedule-btn margin-right" data-loading-text="Rescheduling..." value="Reschedule &raquo;"/>
+                    <a href="#" class="margin-top text-muted close-popup">cancel</a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</script>
+
+<style id="edit-forms-template" type="text/x-template">
+    <form action="schedule.php?owner=12562561&id[]=8016d9f75132eccd0d32acb54d1d9f53&action=appt&m=updateForms&apptId=53700508&PHPSESSID=bphqpnl41b34mab0ivnpjekgb2" method="POST">
+
+        <div class="custom-form">
+            <h2 class="babel-ignore">Device Info</h2>
+            <p class="babel-ignore"></p>
+            <div class="form-group ">
+                <label for="field:130533106" class="control-label babel-ignore">Device</label>
+                <input type="text" class="text form-control inline-field" name="field:130533106" value=""/>
+            </div>
+            <div class="form-group ">
+                <label for="field:130533109" class="control-label babel-ignore">Model</label>
+                <input type="text" class="text form-control inline-field" name="field:130533109" value=""/>
+            </div>
+            <div class="form-group ">
+                <label for="field:130533112" class="control-label babel-ignore">Service</label>
+                <input type="text" class="text form-control inline-field" name="field:130533112" value=""/>
+            </div>
+
+            <br/>
+            <p><input type="submit" class="btn btn-primary" value="Update Forms"/> <a href="#" class="margin-left close-popup">cancel</a></p>
+    </form>
+</style>
+
+<script type="text/javascript">
+    var currentAppointment = {
+        id: 53700508,
+        type: 1671580,
+        calendar: 679696,
+        timezone: 'America/Los_Angeles',
+        time: '2016-08-09 09:00:00'
+    };
+</script>
+
+
+
+
+
+
