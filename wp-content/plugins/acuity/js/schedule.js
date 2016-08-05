@@ -2626,6 +2626,8 @@ Acuity.PickAppointment = (function () {
         var times = [];
         var elementsInOrder = [];
 
+        alert('about to normalize times');
+
         jQuery('#selected-times .selected-time').each(function () {
             var time = jQuery(this).find('[name="time[]"]').val();
             times.push(time);

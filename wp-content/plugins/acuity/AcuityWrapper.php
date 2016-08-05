@@ -1,8 +1,5 @@
 <?php
 
-define('AQUITY__PLUGIN_DIR', plugin_dir_path(__FILE__));
-require_once(AQUITY__PLUGIN_DIR . 'sdk.php');
-
 class AcuityWrapper
 {
     protected $adapter = null;
@@ -12,10 +9,7 @@ class AcuityWrapper
         $userId = '12562561';
         $apiKey = '4783fa38dc0f50993be414f9330e09fb';
 
-        $this->adapter = new AcuityScheduling([
-            'userId' => $userId,
-            'apiKey' => $apiKey,
-        ]);
+        $this->adapter = load_class(AcuitySDK::class, $userId, $apiKey);
     }
 
     public function getAppointments()
@@ -26,12 +20,16 @@ class AcuityWrapper
 
     public function createAppointment($data)
     {
-        $appointment = $this->adapter->request('/appointments', [
+        $response = $this->adapter->request('/appointments?admin=false', [
             'method' => 'POST',
             'data'   => $data,
         ]);
 
-        return $appointment;
+        if (isset($response['status_code']) && $response['status_code'] != 200) {
+            throw load_class(AcuityException::class, $response['message'], $response['error']);
+        }
+
+        return $response;
     }
 
     protected function remote_request($url)
@@ -44,6 +42,7 @@ class AcuityWrapper
 
         if (is_wp_error($request)) {
             echo $request->get_error_message();
+
             return false;
         }
 
@@ -56,7 +55,6 @@ class AcuityWrapper
         }
 
     }
-
 
 
 }

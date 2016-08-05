@@ -12,11 +12,10 @@ class AcuitySDK
     protected $apiKey = null;
     protected $lastStatusCode = null;
 
-    public function __construct($options)
+    public function __construct($userId, $apiKey)
     {
-        $this->apiKey = $options['apiKey'];
-        $this->userId = $options['userId'];
-        $this->base = $options['base'] ? $options['base'] : $this->base;
+        $this->apiKey = $apiKey;
+        $this->userId = $userId;
     }
 
     public function request($path, $options = [])

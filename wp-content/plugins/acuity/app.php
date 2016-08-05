@@ -10,4 +10,8 @@ return [
         'field:1917299',
         'field:1917301',
     ],
+    'NO_SEND_EMAIL' => false,
+    'TIMEZONE' => 'PDT',
+    'DOUBLE_BOOKING_LIMIT' => 1,
+
 ];

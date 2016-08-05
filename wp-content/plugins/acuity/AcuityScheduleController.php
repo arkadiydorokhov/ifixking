@@ -10,11 +10,13 @@
 
 class AcuityScheduleController
 {
-    protected $settings = null;
+    protected $api;
+    protected $settings;
     const URL = 'https://ifixking.acuityscheduling.com/schedule.php';
 
     public function __construct($settings = null)
     {
+        $this->api = load_class('AcuityWrapper');
         $this->settings = $settings ?: acuity_load_settings();
     }
 
@@ -52,7 +54,7 @@ class AcuityScheduleController
                 break;
 
             case 'confirm':
-                $this->confirm($inputs);
+                $this->confirmViaAPI($inputs);
                 break;
 
             case 'appt':
@@ -63,17 +65,72 @@ class AcuityScheduleController
         self::respond(0);
     }
 
+    protected function confirmViaAPI($inputs)
+    {
+        //POST "https://acuityscheduling.com/api/v1/appointments"
+
+        $customFields = array_intersect_key($inputs, array_flip($this->settings['CUSTOM_FIELDS']));
+
+        $payload = [
+            'appointmentTypeID' => $this->settings['CALENDAR_TYPE'],
+            'calendarID'        => $this->settings['CALENDAR_ID'],
+            'datetime'          => self::dateTime($inputs),
+            'firstName'         => $inputs['firstName'],
+            'lastName'          => $inputs['lastName'],
+            'email'             => $inputs['email'],
+            'fields'            => self::formatFields($inputs, $customFields),
+            'noEmail'           => $this->settings['NO_SEND_EMAIL'],
+            'admin'             => false,
+            'timezone'          => $this->settings['TIMEZONE']
+        ];
+
+        try {
+            $appointment = $this->api->createAppointment($payload);
+            status_header(302);
+            self::respond('');
+
+        } catch (AcuityException $e) {
+            status_header(400);
+
+            self::respond(['message' => $e->getMessage(), 'code' => $e->getAcuityCode()]);
+        }
+    }
+
+    private static function dateTime($input)
+    {
+        $time = strtotime($input['time'][0]);
+
+        return '2016-08-15T09:00:00-0700';
+
+        $objDateTime = new DateTime($time);
+
+        return $objDateTime->format(DateTime::ISO8601);
+    }
+
+    private function formatFields($inputs, $fields)
+    {
+        return
+            [
+                [
+                    "id"    => 1917296,
+                    "value" => "Party time!",
+                ],
+            ];
+    }
+
     protected function appt($inputs)
     {
-        $query = '?action=appt&owner=12562561&id%5B%5D=ea174b14538f4a58091f9ae3504ca6ab&admin=&ajax=1&PHPSESSID=riapofankt7gplucov3l26k206' . $this->settings['OWNER_ID'];
+        $owner = $this->settings['OWNER_ID'];
 
-        ?action=appt
-    &owner=12562561
-    &id[]=ea174b14538f4a58091f9ae3504ca6ab
-    &admin=
-    &ajax=1
-    &PHPSESSID=riapofankt7gplucov3l26k206
+        $query = "?action=appt&owner=$owner&admin=&ajax=1";
 
+//        ?action=appt
+//    &owner=12562561
+//    &id[]=ea174b14538f4a58091f9ae3504ca6ab
+//    &admin=
+//    &ajax=1
+//    &PHPSESSID=riapofankt7gplucov3l26k206
+//
 
         $fields = array_flip([
             'linkAppointmentType',
@@ -250,6 +307,7 @@ class AcuityScheduleController
 
         if (is_wp_error($response)) {
             echo $response->get_error_message();
+
             return false;
         }
 
@@ -258,6 +316,10 @@ class AcuityScheduleController
 
     public static function respond($content)
     {
+        if (is_array($content)) {
+            $content = json_encode($content);
+        }
+
         wp_die($content);
     }
 

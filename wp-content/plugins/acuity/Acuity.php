@@ -18,24 +18,36 @@ add_action('admin_init', 'acuity_register_options');
 
 add_action('plugins_loaded', function () {
 
-    load_class('AcuityForm');
-    load_class('AcuityScheduleController');
-
-    //$wrapper = load_class('AcuityWrapper');
+    load_class(AcuityForm::class);
+    load_class(AcuityScheduleController::class);
 });
 
 /**
  *  Makeshift class loader
  *
  * @param $class
+ *
  * @return mixed
  */
 function load_class($class)
 {
     require_once(plugin_dir_path(__FILE__) . $class . '.php');
 
-    $instance = new $class;
-    $instance::register($instance);
+    $args = func_get_args();
+
+    $args = array_slice($args, 1);
+
+
+    //$instance = new $class($args);
+
+    $ref = new ReflectionClass($class);
+    $instance = $ref->newInstanceArgs($args);
+
+    //call_user_func_array([$instance, '__construct'], [$params]);
+
+    if (method_exists($instance, 'register')) {
+        $instance::register($instance);
+    }
 
     return $instance;
 }
@@ -55,6 +67,7 @@ function include_html($file)
 {
     ob_start();
     include $file;
+
     return ob_get_clean();
 }
 
@@ -71,6 +84,7 @@ function remote_request($url, $data)
 
     if (is_wp_error($request)) {
         echo $request->get_error_message();
+
         return false;
     }
 
